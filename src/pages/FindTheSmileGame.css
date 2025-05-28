@@ -1,0 +1,76 @@
+/* pages/FindTheSmileGame.css */
+.find-smile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #5f6a6a;
+}
+
+.find-smile-container h2 {
+  color: #ffdab9; /* Peach Puff */
+  margin-bottom: 10px;
+}
+
+.level-indicator {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.game-message {
+  min-height: 1.5em; /* To prevent layout shift */
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.face-grid {
+  display: grid;
+  gap: 10px; /* Soft spacing */
+  background-color: #e0ffff; /* Light Cyan - slightly different from page bg */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  max-width: 700px; /* Or adjust based on face size */
+  width: 90%;
+}
+
+.face-cell {
+  background-color: #fffacd; /* Lemon Chiffon */
+  border: 2px solid #ffdab9; /* Peach Puff */
+  border-radius: 10px;
+  font-size: 2em; /* Adjust based on grid size */
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  aspect-ratio: 1 / 1; /* Make cells square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.face-cell:hover {
+  transform: scale(1.1);
+  background-color: #f5deb3; /* Wheat - slightly darker on hover */
+}
+
+.reset-button {
+  background-color: #ffdab9; /* Peach Puff */
+  color: #5f6a6a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.reset-button:hover {
+  background-color: #ffa07a; /* Light Salmon */
+}
+
+.game-stats {
+  margin-top: 15px;
+  font-size: 0.9em;
+}

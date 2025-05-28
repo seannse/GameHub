@@ -1,0 +1,42 @@
+/* components/Header.css */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #afeeee; /* Pale Turquoise */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #5f6a6a;
+}
+
+.app-header .logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #5f6a6a;
+}
+
+.app-header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #5f6a6a;
+  font-size: 1.1em;
+  transition: color 0.2s ease-in-out;
+}
+
+.app-header nav a:hover,
+.app-header nav a.active {
+  color: #ffa07a; /* Peach Puff */
+}
+
+.app-header nav a.active {
+  border-bottom: 1px solid #ffa07a;
+}
+
+.user-progress {
+  font-size: 0.9em;
+  color: #5f6a6a;
+}
+.user-progress span {
+  margin-left: 15px;
+}
