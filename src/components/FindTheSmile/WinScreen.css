@@ -49,6 +49,14 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+@media screen and (max-width: 697px) {
+  .win-screen-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
 .win-screen-actions .win-button:hover {
   background-color: #ffa07a; /* Light Salmon */
   transform: translateY(-2px);

@@ -25,22 +25,22 @@
 
 .face-grid {
   display: grid;
-  gap: 10px; /* Soft spacing */
-  background-color: #e0ffff; /* Light Cyan - slightly different from page bg */
-  padding: 20px;
+  gap: 10px;
+  background-color: #e0ffff;
+  padding: 10px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  max-width: 700px; /* Or adjust based on face size */
-  width: 90%;
+  max-width: 90%;
+  /* width: 90%; */
 }
 
 .face-cell {
   background-color: #fffacd; /* Lemon Chiffon */
   border: 2px solid #ffdab9; /* Peach Puff */
   border-radius: 10px;
-  font-size: 2em; /* Adjust based on grid size */
-  padding: 10px;
+  font-size: 2em;
+  padding: 5px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
   aspect-ratio: 1 / 1; /* Make cells square */
@@ -49,9 +49,63 @@
   align-items: center;
 }
 
+@media screen and (max-width: 767px) {
+  .face-cell {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .face-cell {
+    font-size: 1em;
+  }
+}
+
 .face-cell:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   background-color: #f5deb3; /* Wheat - slightly darker on hover */
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 10px;
+  background-color: #e6e6fa; /* Lavender */
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 1.1em;
+}
+
+.level-indicator,
+.timer-display {
+  margin: 0 10px;
+}
+
+/* Shake animation for sad face */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.face-cell.shaking {
+  animation: shake 0.5s ease-in-out;
 }
 
 .reset-button {

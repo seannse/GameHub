@@ -58,6 +58,13 @@
   align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+  .game-overlay,
+  .game-board {
+    max-width: 300px;
+  }
+}
+
 .game-over-text {
   font-size: 2em;
   color: #dc143c; /* Crimson */

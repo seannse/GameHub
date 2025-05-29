@@ -1,11 +1,10 @@
-// components/Header.js
-import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useGameProgress } from "../../contexts/GameProgressContext";
+
 import "./Header.css"; // For styling
 
 const Header = () => {
-  // Placeholder for score/progress - could come from context or props
-  const userProgress = { findTheSmileLevel: 1, snakeHighScore: 0 };
+  const { findTheSmileLevel, snakeHighScore, MAX_LEVELS } = useGameProgress();
 
   return (
     <header className="app-header">
@@ -17,9 +16,8 @@ const Header = () => {
         <NavLink to="/snake">Snake</NavLink>
       </nav>
       <div className="user-progress">
-        {/* Placeholder for score/saved progress */}
-        <span>Smile Lvl: {userProgress.findTheSmileLevel}</span>
-        <span>Snake HS: {userProgress.snakeHighScore}</span>
+        <span>Smile Lvl: {Math.min(findTheSmileLevel, MAX_LEVELS)}</span>
+        <span>Snake HS: {snakeHighScore}</span>
       </div>
     </header>
   );

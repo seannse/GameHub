@@ -1,14 +1,24 @@
-// pages/SnakeGame.js
 import React, { useState, useEffect, useCallback } from "react";
+import { useGameProgress } from "../contexts/GameProgressContext";
 import "./SnakeGame.css"; // For styling
 
 const GRID_SIZE = 20; // 20x20 grid
 const CELL_SIZE = 20; // 20px per cell
 
-const getRandomPosition = () => ({
-  x: Math.floor(Math.random() * GRID_SIZE),
-  y: Math.floor(Math.random() * GRID_SIZE),
-});
+const getRandomPosition = (snakeBody = []) => {
+  let position;
+  do {
+    position = {
+      x: Math.floor(Math.random() * GRID_SIZE),
+      y: Math.floor(Math.random() * GRID_SIZE),
+    };
+  } while (
+    snakeBody.some(
+      (segment) => segment.x === position.x && segment.y === position.y
+    )
+  );
+  return position;
+};
 
 const SnakeGame = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
@@ -16,10 +26,8 @@ const SnakeGame = () => {
   const [direction, setDirection] = useState({ x: 1, y: 0 }); // Moving right initially
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(() =>
-    parseInt(localStorage.getItem("snakeHighScore") || "0")
-  ); // Placeholder for saved progress
   const [gameStarted, setGameStarted] = useState(false);
+  const { snakeHighScore, updateSnakeHighScore } = useGameProgress();
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -83,7 +91,7 @@ const SnakeGame = () => {
         // Eat food
         if (head.x === food.x && head.y === food.y) {
           setScore((s) => s + 1);
-          setFood(getRandomPosition()); // Ensure new food isn't on snake
+          setFood(getRandomPosition(newSnake)); // Ensure new food isn't on snake
         } else {
           newSnake.pop(); // Remove tail
         }
@@ -95,11 +103,18 @@ const SnakeGame = () => {
   }, [snake, direction, food, gameOver, gameStarted]);
 
   useEffect(() => {
-    if (score > highScore) {
-      setHighScore(score);
-      localStorage.setItem("snakeHighScore", score.toString()); // Save high score
+    if (score > 0) {
+      // Only update if score is greater than 0
+      updateSnakeHighScore(score); // Update context and localStorage
     }
-  }, [score, highScore]);
+  }, [score, updateSnakeHighScore]);
+
+  useEffect(() => {
+    if (gameOver && gameStarted) {
+      // Final check for high score when game ends
+      updateSnakeHighScore(score);
+    }
+  }, [gameOver, gameStarted, score, updateSnakeHighScore]);
 
   const startGame = () => {
     setSnake([{ x: 10, y: 10 }]);
@@ -115,7 +130,7 @@ const SnakeGame = () => {
       <h2>Classic Snake</h2>
       <div className="score-board">
         <span>Score: {score}</span>
-        <span>High Score: {highScore}</span>
+        <span>High Score: {snakeHighScore}</span>
       </div>
       <div
         className="game-board"

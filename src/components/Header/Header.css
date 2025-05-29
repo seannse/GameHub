@@ -37,6 +37,15 @@
   font-size: 0.9em;
   color: #5f6a6a;
 }
+
+@media screen and (max-width: 697px) {
+  .user-progress,
+  .app-header nav {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .user-progress span {
   margin-left: 15px;
 }

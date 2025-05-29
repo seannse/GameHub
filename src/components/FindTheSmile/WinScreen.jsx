@@ -1,27 +1,44 @@
-// components/FindTheSmile/WinScreen.js
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useGameProgress } from "../../contexts/GameProgressContext";
+import { formatTime } from "../../helpers/formatTime";
+
 import "./WinScreen.css";
 
 const WinScreen = () => {
-  const navigate = useNavigate();
+  const { resetFindTheSmileProgress } = useGameProgress();
+  const [finalTime, setFinalTime] = useState(null);
 
-  const handlePlayAgain = () => {
-    // Reset level in global state/localStorage if needed before navigating
-    navigate("/find-the-smile");
+  useEffect(() => {
+    const savedTime = localStorage.getItem("findTheSmileLastTotalTime");
+    if (savedTime) {
+      setFinalTime(parseInt(savedTime, 10));
+    }
+  }, []);
+
+  const resetProgress = () => {
+    resetFindTheSmileProgress();
   };
 
   return (
     <div className="win-screen-container">
-      {/* Optional: Confetti animation here */}
       <div className="win-emoji">🎉</div>
       <h1>You Win!</h1>
       <p>Amazing! You found all the smiles!</p>
+      {finalTime !== null && (
+        <p className="final-time-display">
+          Your total time: {formatTime(finalTime)}
+        </p>
+      )}
       <div className="win-screen-actions">
-        <button onClick={handlePlayAgain} className="win-button">
+        <Link
+          to="/find-the-smile"
+          onClick={resetProgress}
+          className="win-button"
+        >
           Play Again
-        </button>
-        <Link to="/" className="win-button secondary">
+        </Link>
+        <Link to="/" onClick={resetProgress} className="win-button secondary">
           Back to Home
         </Link>
       </div>
