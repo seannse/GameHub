@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useGameProgress } from "../contexts/GameProgressContext";
 import "./SnakeGame.css"; // For styling
 
-const GRID_SIZE = 20; // 20x20 grid
+const GRID_SIZE = 17; // 20x20 grid
 const CELL_SIZE = 20; // 20px per cell
 
 const getRandomPosition = (snakeBody = []) => {

@@ -44,6 +44,9 @@
     display: flex;
     flex-direction: column;
   }
+  .app-header nav a.active {
+    border-bottom: none;
+  }
 }
 
 .user-progress span {

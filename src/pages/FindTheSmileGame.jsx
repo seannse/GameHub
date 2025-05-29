@@ -8,7 +8,7 @@ const SAD_FACE = "😞";
 const SMILEY_FACE = "😊";
 
 const generateGrid = (level) => {
-  const columns = Math.min(level + 1, 7); // Cap grid size for very high levels, e.g. Level 1: 2x2
+  const columns = Math.min(level + 1, 5); // Cap grid size for very high levels, e.g. Level 1: 2x2
   const totalCells = columns * columns;
   const smileyIndex = Math.floor(Math.random() * totalCells);
   const cells = Array(totalCells).fill(SAD_FACE);
