@@ -61,7 +61,12 @@
 /* @media screen and (max-width: 480px) {
   .game-overlay,
   .game-board {
-    max-width: 300px;
+    max-width: 320px;
+    max-height: 320px;
+  }
+
+  .score-board {
+    width: 260px;
   }
 } */
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useGameProgress } from "../contexts/GameProgressContext";
 import "./SnakeGame.css"; // For styling
 
-const GRID_SIZE = 17; // 20x20 grid
+const GRID_SIZE = 20; // 20x20 grid
 const CELL_SIZE = 20; // 20px per cell
 
 const getRandomPosition = (snakeBody = []) => {
@@ -28,6 +28,7 @@ const SnakeGame = () => {
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const { snakeHighScore, updateSnakeHighScore } = useGameProgress();
+  const [cellSize, setCellSize] = useState(CELL_SIZE);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -51,6 +52,14 @@ const SnakeGame = () => {
     },
     [direction, gameStarted]
   );
+
+  useEffect(() => {
+    if (window.innerWidth < 480) {
+      setCellSize(15);
+    } else {
+      setCellSize(CELL_SIZE);
+    }
+  }, []);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -135,8 +144,8 @@ const SnakeGame = () => {
       <div
         className="game-board"
         style={{
-          width: GRID_SIZE * CELL_SIZE,
-          height: GRID_SIZE * CELL_SIZE,
+          width: GRID_SIZE * cellSize,
+          height: GRID_SIZE * cellSize,
         }}
       >
         {/* Render Snake */}
@@ -145,10 +154,10 @@ const SnakeGame = () => {
             key={index}
             className="snake-segment"
             style={{
-              left: segment.x * CELL_SIZE,
-              top: segment.y * CELL_SIZE,
-              width: CELL_SIZE,
-              height: CELL_SIZE,
+              left: segment.x * cellSize,
+              top: segment.y * cellSize,
+              width: cellSize,
+              height: cellSize,
             }}
           />
         ))}
@@ -156,10 +165,10 @@ const SnakeGame = () => {
         <div
           className="food-item"
           style={{
-            left: food.x * CELL_SIZE,
-            top: food.y * CELL_SIZE,
-            width: CELL_SIZE,
-            height: CELL_SIZE,
+            left: food.x * cellSize,
+            top: food.y * cellSize,
+            width: cellSize,
+            height: cellSize,
           }}
         />
         {(!gameStarted || gameOver) && (

@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <GameProgressProvider>
-        <WithWinRedirect />
+        {<WithWinRedirect />}
         <div
           className="app-container"
           style={{

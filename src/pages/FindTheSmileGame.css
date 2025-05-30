@@ -10,6 +10,7 @@
 .find-smile-container h2 {
   color: #ffdab9; /* Peach Puff */
   margin-bottom: 10px;
+  overflow-x: hidden;
 }
 
 .level-indicator {
@@ -31,15 +32,18 @@
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  max-width: 500px;
-  width: 90%;
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  grid-template-columns: repeat(auto-fit, minimax(60px, 1fr));
 }
 
 .face-cell {
   background-color: #fffacd; /* Lemon Chiffon */
   border: 2px solid #ffdab9; /* Peach Puff */
   border-radius: 10px;
-  font-size: 3em;
+  /* font-size: 3em; */
+  font-size: clamp(1.5em, 5vw, 3em);
   padding: 5px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
@@ -49,11 +53,11 @@
   align-items: center;
 }
 
-@media screen and (max-width: 597px) {
+/* @media screen and (max-width: 597px) {
   .face-cell {
     font-size: 1.5em;
   }
-}
+} */
 
 .face-cell:hover {
   transform: scale(1.05);
