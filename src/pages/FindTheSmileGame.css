@@ -35,7 +35,7 @@
   max-width: 700px;
   width: 100%;
   box-sizing: border-box;
-  grid-template-columns: repeat(auto-fit, minimax(60px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
 }
 
 .face-cell {
@@ -53,11 +53,19 @@
   align-items: center;
 }
 
-/* @media screen and (max-width: 597px) {
-  .face-cell {
-    font-size: 1.5em;
+@media (max-width: 480px) {
+  .face-grid {
+    max-width: 98vw;
+    gap: 5px;
+    padding: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   }
-} */
+  .face-cell {
+    font-size: 2em;
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
 
 .face-cell:hover {
   transform: scale(1.05);
